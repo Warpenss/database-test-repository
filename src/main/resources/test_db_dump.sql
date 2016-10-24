@@ -35,7 +35,7 @@ CREATE TABLE `accounts` (
   `sex` enum('M','F') NOT NULL,
   `account_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +44,7 @@ CREATE TABLE `accounts` (
 
 LOCK TABLES `accounts` WRITE;
 /*!40000 ALTER TABLE `accounts` DISABLE KEYS */;
+INSERT INTO `accounts` VALUES ('warp','someemail@gmail.com','somepassword','0933807393','Eugene','Smyrnov','Mira','Kiev','1996-04-23','M',1),('warpenss','secondemail@ya.ru','easypass','0505554433','Andrew','Smyrnov','Pushkina','Kiev','1973-12-12','M',2),('warpenn','stateemail@ya.ru','passpass','5638356853','Sasha','Anatov','Poeta','Dnepr','1982-01-22','F',3),('warpens','strongl@ya.ru','12345678','4274367835','Jhon','Smyrnov','Pushkina','Kiev','1993-12-12','F',4),('warpen','warp@ya.ru','11223344','2435734673','Summer','Hacher','Kukushka','Kiev','1997-12-12','M',5),('warpe','justyou@ya.ru','whtdouwntfromme','4734673568','Scott','Mannly','Pushkina','Kiev','1996-12-15','F',6),('matsuflex','mailmepepls@ya.ru','yeahpls','3568346735','Hansy','Petrov','Lebedeva','Kiev','1995-12-12','M',7),('darkchoko','shtfu@ya.ru','hellohacker','7356835677','Justin','Lyshko','Clowns','Kiev','1994-02-22','M',8),('tumbler','programmergod@ya.ru','proscamer','5675673245','Hacker','Ivanov','Pushkina','Kiev','1993-12-12','F',9),('prospect','justes@ya.ru','skater','3245623455','Eugene','Popov','Pushkina','Kiev','1992-08-10','M',10),('daily','nuller@ya.ru','jumper','5764562456','Andrew','Saske','Pushkina','Kiev','1991-04-12','F',11);
 /*!40000 ALTER TABLE `accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-23 23:41:37
+-- Dump completed on 2016-10-24 19:49:36
