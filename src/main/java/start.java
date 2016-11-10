@@ -8,10 +8,10 @@ public class start {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
             System.out.print("Enter login: ");
-            String log = reader.readLine();
+            String login = reader.readLine();
 
             System.out.print("Enter email: ");
-            String emai = reader.readLine();
+            String email = reader.readLine();
 
             System.out.print("Enter password: ");
             String pass = reader.readLine();
@@ -26,10 +26,10 @@ public class start {
             String lastName = reader.readLine();
 
             System.out.print("Enter Street: ");
-            String stree = reader.readLine();
+            String street = reader.readLine();
 
             System.out.print("Enter City: ");
-            String cit = reader.readLine();
+            String city = reader.readLine();
 
             System.out.print("Enter day of birth (YYYY-MM-DD): ");
             String dob = reader.readLine();
@@ -40,7 +40,7 @@ public class start {
             System.out.println("");
             System.out.println("");
 
-            insertMethod(log, emai, pass, phone, firstName, lastName, stree, cit, dob, gender);
+            insertMethod(login, email, pass, phone, firstName, lastName, street, city, dob, gender);
 
             System.out.println("");
             System.out.println("");
@@ -49,21 +49,19 @@ public class start {
             if(reader.readLine().toLowerCase().equals("exit"))
                 break;
 
-
         }
     }
 
-    private static void insertMethod(String log, String emai, String pass, String phone, String firstName, String lastName,
-                      String stree, String cit, String dob, String gender)
-    {
+    private static void insertMethod(String login, String email, String pass, String phone, String firstName, String lastName,
+                      String street, String city, String dob, String gender) {
         try{
             Connection conn;
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false", "root", "ttipopu");
             Statement sqlState = conn.createStatement();
 
-            sqlState.executeUpdate("INSERT INTO accounts " + "VALUES ('"+ log +"', '"+ emai +"', '"+ pass +"'," +
-                    " '"+ phone +"', '"+ firstName +"', '"+ lastName +"', '"+ stree +"', '"+ cit +"'," +
+            sqlState.executeUpdate("INSERT INTO accounts " + "VALUES ('"+ login +"', '"+ email +"', '"+ pass +"'," +
+                    " '"+ phone +"', '"+ firstName +"', '"+ lastName +"', '"+ street +"', '"+ city +"'," +
                     " '"+ dob +"', '"+ gender +"', null)");
 
             String selectStuff = "SELECT login, email, password FROM accounts";
