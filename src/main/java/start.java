@@ -7,6 +7,9 @@ public class start {
     public static void main(String[] arg) throws IOException{
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         while (true) {
+
+            //Entering user data
+
             System.out.print("Enter login: ");
             String login = reader.readLine();
 
@@ -40,10 +43,14 @@ public class start {
             System.out.println("");
             System.out.println("");
 
+            //Method for printing accounts table
+
             insertMethod(login, email, pass, phone, firstName, lastName, street, city, dob, gender);
 
             System.out.println("");
             System.out.println("");
+
+            //Exit or continuing registration
 
             System.out.print("To exit the program type: Exit ");
             if(reader.readLine().toLowerCase().equals("exit"))
@@ -55,10 +62,14 @@ public class start {
     private static void insertMethod(String login, String email, String pass, String phone, String firstName, String lastName,
                       String street, String city, String dob, String gender) {
         try{
+            //Conection to MySQL
+
             Connection conn;
             Class.forName("com.mysql.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false", "root", "ttipopu");
             Statement sqlState = conn.createStatement();
+
+            //Inserting data into accounts table
 
             sqlState.executeUpdate("INSERT INTO accounts " + "VALUES ('"+ login +"', '"+ email +"', '"+ pass +"'," +
                     " '"+ phone +"', '"+ firstName +"', '"+ lastName +"', '"+ street +"', '"+ city +"'," +
