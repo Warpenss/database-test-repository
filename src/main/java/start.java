@@ -37,10 +37,16 @@ public class start {
             System.out.print("Enter sex (M or F): ");
             String gender = reader.readLine();
 
+            System.out.println("");
+            System.out.println("");
+
             insertMethod(log, emai, pass, phone, firstName, lastName, stree, cit, dob, gender);
 
+            System.out.println("");
+            System.out.println("");
+
             System.out.print("To exit the program type: Exit ");
-            if(reader.readLine().equals("Exit"))
+            if(reader.readLine().toLowerCase().equals("exit"))
                 break;
 
 
