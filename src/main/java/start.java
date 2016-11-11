@@ -1,98 +1,58 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.html.ObjectView;
 import java.sql.*;
 
 public class start {
-    public static void main(String[] arg) throws IOException{
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
 
-            //Entering user data
+    static Object[][] databaseInfo;
 
-            System.out.print("Enter login: ");
-            String login = reader.readLine();
+    static Object[] columns = {"Login", "Email", "Password", "Phone Number", "First Name", "Last Name", "Street", "City", "Day of Birth", "Sex", "AccountID"}
 
-            System.out.print("Enter email: ");
-            String email = reader.readLine();
+    static ResultSet rows;
 
-            System.out.print("Enter password: ");
-            String pass = reader.readLine();
+    static ResultSetMetaData metaData;
 
-            System.out.print("Enter phone number: ");
-            String phone = reader.readLine();
-
-            System.out.print("Enter First Name: ");
-            String firstName = reader.readLine();
-
-            System.out.print("Enter Last Name: ");
-            String lastName = reader.readLine();
-
-            System.out.print("Enter Street: ");
-            String street = reader.readLine();
-
-            System.out.print("Enter City: ");
-            String city = reader.readLine();
-
-            System.out.print("Enter day of birth (YYYY-MM-DD): ");
-            String dob = reader.readLine();
-
-            System.out.print("Enter sex (M or F): ");
-            String gender = reader.readLine();
-
-            System.out.println("");
-            System.out.println("");
-
-            //Method for printing accounts table
-
-            insertMethod(login, email, pass, phone, firstName, lastName, street, city, dob, gender);
-
-            System.out.println("");
-            System.out.println("");
-
-            //Exit or continuing registration
-
-            System.out.print("To exit the program type: Exit ");
-            if(reader.readLine().toLowerCase().equals("exit"))
-                break;
-
+    static DefaultTableModel defaultTableModel = new DefaultTableModel(databaseInfo, columns){
+        public Class getColumnClass(int column){
+            Class returnValue;
+            if((column >= 0) && (column < getColumnCount())){
+                returnValue = getValueAt(0, column).getClass();
+            }
+            else {
+                returnValue = Object.class;
+            }
+            return returnValue;
         }
     }
+    public static void main(String[] arg) {
+        JFrame frame = new JFrame();
 
-    private static void insertMethod(String login, String email, String pass, String phone, String firstName, String lastName,
-                      String street, String city, String dob, String gender) {
-        try{
-            //Conection to MySQL
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-            Connection conn;
+        Connection conn = null;
+
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test?autoReconnect=true&useSSL=false", "root", "ttipopu");
+
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "ttipopu");
+
             Statement sqlState = conn.createStatement();
 
-            //Inserting data into accounts table
+            String selectStuff = "SELECT * FROM accounts";
 
-            sqlState.executeUpdate("INSERT INTO accounts " + "VALUES ('"+ login +"', '"+ email +"', '"+ pass +"'," +
-                    " '"+ phone +"', '"+ firstName +"', '"+ lastName +"', '"+ street +"', '"+ city +"'," +
-                    " '"+ dob +"', '"+ gender +"', null)");
+            rows = sqlState.executeQuery(selectStuff);
 
-            String selectStuff = "SELECT login, email, password FROM accounts";
-            ResultSet rows = sqlState.executeQuery(selectStuff);
-            while(rows.next()){
-                System.out.println("Login: " + rows.getString("login") + "    Email: " + rows.getString("email") +
-                        "    Password: " + rows.getString("password"));
+            Object[] tempRow;
+
+            while (rows.next()){
+                tempRow = new Object[]{rows.getString(1), rows.getString(2), rows.getString(3), rows.getString(4), rows.getString(5), rows.getString(6), rows.getString(7), rows.getString(8), rows.getString(9), rows.getString(10), rows.getString(11)};
+                defaultTableModel.addRow(tempRow);
+
             }
-
         }
 
-        catch (SQLException sqlEx) {
-            System.out.println("Error. Incorrectly entered data!");
-            System.out.println("SQLException: " + sqlEx.getMessage());
-            System.out.println("VendorError: " + sqlEx.getErrorCode()  );
-        }
-
-        catch (ClassNotFoundException classEx){
-            classEx.printStackTrace();
-        }
 
     }
 }
+
