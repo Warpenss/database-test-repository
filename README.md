@@ -2,6 +2,8 @@
 Simple database based project for styding SQL, JDBC and other technologies.
 Using: 
 Intellij IDEA,
+Swing,
+JTable,
 Maven,
 MySQL,
 SQl,
