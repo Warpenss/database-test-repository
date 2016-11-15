@@ -39,7 +39,7 @@ public class start {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost/test_db", "root", "ttipopu");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost/test", "root", "ttipopu");
 
             Statement sqlState = conn.createStatement();
 
@@ -70,53 +70,17 @@ public class start {
 
         table.setAutoCreateRowSorter(true);
 
-        table.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-
-        TableColumn col1 = table.getColumnModel().getColumn(0);
-        col1.setPreferredWidth(100);
-
-        TableColumn col2 = table.getColumnModel().getColumn(1);
-        col2.setPreferredWidth(200);
-
-        TableColumn col3 = table.getColumnModel().getColumn(2);
-        col3.setPreferredWidth(150);
-
-        TableColumn col4 = table.getColumnModel().getColumn(3);
-        col4.setPreferredWidth(150);
-
-        TableColumn col5 = table.getColumnModel().getColumn(4);
-        col5.setPreferredWidth(100);
-
-        TableColumn col6 = table.getColumnModel().getColumn(5);
-        col6.setPreferredWidth(100);
-
-        TableColumn col7 = table.getColumnModel().getColumn(6);
-        col7.setPreferredWidth(100);
-
-        TableColumn col8 = table.getColumnModel().getColumn(7);
-        col8.setPreferredWidth(100);
-
-        TableColumn col9 = table.getColumnModel().getColumn(8);
-        col9.setPreferredWidth(100);
-
-        TableColumn col10 = table.getColumnModel().getColumn(9);
-        col10.setPreferredWidth(50);
-
-        TableColumn col11 = table.getColumnModel().getColumn(10);
-        col11.setPreferredWidth(100);
-
-        TableColumn tc = table.getColumn("Sex");
-        CenterTableCellRenderer centerRenderer = new CenterTableCellRenderer();
-        tc.setCellRenderer(centerRenderer);
-
-        tc = table.getColumn("AccountID");
-        centerRenderer = new CenterTableCellRenderer();
-        tc.setCellRenderer(centerRenderer);
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         JScrollPane scrollPane = new JScrollPane(table);
-        frame.add(scrollPane, BorderLayout.CENTER);
-        frame.setSize(1270,900);
+        frame.add(scrollPane, BorderLayout.LINE_START);
+
+        JTextField textField = new JTextField("Heeeelo");
+        frame.add(textField, BorderLayout.CENTER);
+
+        frame.pack();
         frame.setVisible(true);
+
     }
 }
 
